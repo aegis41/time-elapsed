@@ -1,0 +1,23 @@
+body {
+    background-color: #121212;
+}
+
+h1 {
+    color: orange;
+    text-align: center;
+}
+
+p.elapsed-time-para {
+    color: wheat;
+    text-align: center;
+    font-size: 5rem;
+}
+
+div.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
