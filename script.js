@@ -1,7 +1,8 @@
 function elapsedTime() {
     const startDate = new Date('August 4, 2022 23:00:00');
     const endDate = new Date();
-    return endDate - startDate;
+    let msDateDiff = endDate - startDate;
+    return msDateDiff;
 }
 
 function getUnit (pool, unit, upUnit) {
@@ -9,12 +10,13 @@ function getUnit (pool, unit, upUnit) {
 }
 
 function updateTime(el, elapsedTime) {
-    let milis = elapsedTime % cr.msPerSec;
-    let seconds = getUnit(elapsedTime, cr.msPerSec, cr.msPerMin);
-    let minutes = getUnit(elapsedTime, cr.msPerMin, cr.msPerHour);
-    let hours = getUnit(elapsedTime, cr.msPerHour, cr.msPerDay);
-    let days = getUnit(elapsedTime, cr.msPerDay, cr.msPerWeek);
-    let weeks = Math.floor(elapsedTime / cr.msPerWeek);
+    let elTime = elapsedTime();
+    let milis = elTime % cr.msPerSec;
+    let seconds = getUnit(elTime, cr.msPerSec, cr.msPerMin);
+    let minutes = getUnit(elTime, cr.msPerMin, cr.msPerHour);
+    let hours = getUnit(elTime, cr.msPerHour, cr.msPerDay);
+    let days = getUnit(elTime, cr.msPerDay, cr.msPerWeek);
+    let weeks = Math.floor(elTime / cr.msPerWeek);
     el.innerText = `${weeks}:${days}:${hours}:${minutes}:${seconds}:${milis}`;
 }
 
@@ -32,6 +34,4 @@ const cr = {
 
 const timeElPara = document.getElementById("elapsed-time-para");
 
-// setInterval(() => {window.alert('Hi')}, 5000);
-
-setInterval(updateTime(timeElPara, elapsedTime()), 1000);
+setInterval(updateTime, 50, timeElPara, elapsedTime);
